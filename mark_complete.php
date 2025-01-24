@@ -5,9 +5,10 @@ require_once('db.php');
 
 if (isset($_POST['mark_btn'])) {
     $mark_complete = mysqli_real_escape_string($conn, trim($_POST['mark_complete']));
+    $check_complete = mysqli_real_escape_string($conn, trim($_POST['completed']));
 
     // Update query
-    $markTask = "UPDATE `tasks` SET `is_completed`= '1' WHERE id = $mark_complete";
+    $markTask = "UPDATE `tasks` SET `is_completed`= '$check_complete' WHERE id = $mark_complete";
     $markTask_query = mysqli_query($conn, $markTask);
 
     // If update redirect to main file

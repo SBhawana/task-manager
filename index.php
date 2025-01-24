@@ -51,17 +51,7 @@ $result_allTask = mysqli_fetch_all($allTask_query, MYSQLI_ASSOC);
                 </button>
             </form>
         </div>
-        <!-- <form action="logout.php" method="post" class="logout_form">
-            <input type="hidden" name="logout_id" value="">
-            <button type="submit" class="btn btn-primary " name="logout_btn" value="logout">Log out &nbsp;&nbsp;<i class="fa-solid fa-right-from-bracket"></i></button>
-        </form> -->
 
-        <!-- Form For Adding Task -->
-
-        <!-- <form class="form_box" action="add_task.php" method="post">
-            <input type="text" name="task" class="form-control" placeholder="Enter a new task" autofocus>
-            <button class="btn btn-primary task_btn" type="submit" name="add_task">Add Task</button>
-        </form> -->
 
 
         <!-- Table For Showing All Tasks -->
@@ -80,7 +70,20 @@ $result_allTask = mysqli_fetch_all($allTask_query, MYSQLI_ASSOC);
                             <td class="border-start">
                                 <form action="mark_complete.php" method="post" class="d-inline">
                                     <input type="hidden" name="mark_complete" value="<?= $task['id'] ?>">
-                                    <button type="submit" class="btn btn-success" name="mark_btn" value="mark"><i class="icon fa-solid fa-check-to-slot"></i></button>
+
+                                    <?php
+                                    if ($task['is_completed'] == 1) {
+
+
+                                    ?>
+                                        <input type="hidden" name="completed" value="0">
+                                        <button type="submit" class="btn btn-success" name="mark_btn" value="mark">Completed</button>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <input type="hidden" name="completed" value="1">
+                                        <button type="submit" class="btn btn-danger" name="mark_btn" value="mark">Not Completed</button>
+                                    <?php } ?>
                                 </form>
                                 <form action="delete_task.php" method="post" class="d-inline">
                                     <input type="hidden" name="delete_id" value="<?= $task['id'] ?>">
